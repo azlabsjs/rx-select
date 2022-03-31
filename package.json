@@ -37,17 +37,17 @@
             "default": "./dist/cjs/index.js"
         }
     },
-    "name": "rx-select",
+    "name": "@iazlabs/rx-select",
     "author": "azandrew-sidoine",
     "module": "dist/esm/index.js",
     "size-limit": [
         {
             "path": "dist/cjs/index.js",
-            "limit": "5 KB"
+            "limit": "7 KB"
         },
         {
             "path": "dist/esm/index.js",
-            "limit": "5 KB"
+            "limit": "7 KB"
         }
     ],
     "devDependencies": {
