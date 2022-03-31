@@ -1,9 +1,11 @@
 {
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "main": "dist/index.js",
     "typings": "dist/types/index.d.ts",
-    "files": ["dist/**/*"],
+    "files": [
+        "dist/**/*"
+    ],
     "engines": {
         "node": ">=14"
     },
@@ -38,13 +40,16 @@
     "name": "rx-select",
     "author": "azandrew-sidoine",
     "module": "dist/esm/index.js",
-    "size-limit": [{
-        "path": "dist/cjs/index.js",
-        "limit": "5 KB"
-    }, {
-        "path": "dist/esm/index.js",
-        "limit": "5 KB"
-    }],
+    "size-limit": [
+        {
+            "path": "dist/cjs/index.js",
+            "limit": "5 KB"
+        },
+        {
+            "path": "dist/esm/index.js",
+            "limit": "5 KB"
+        }
+    ],
     "devDependencies": {
         "@betterer/cli": "^5.1.7",
         "@betterer/typescript": "^5.1.7",
