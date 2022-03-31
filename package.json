@@ -74,5 +74,8 @@
         "rxjs": "^6.6.7 || ^7.0",
         "@iazlabs/functional": "^0.1.8",
         "@iazlabs/utilities": "^0.1.8"
+    },
+    "publishConfig": {
+      "registry": "https://npm.pkg.github.com/@iazlabs"
     }
 }
