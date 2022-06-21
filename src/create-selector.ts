@@ -1,7 +1,7 @@
 // createSelector functions
 
-import { memoize, MemoizerOptions } from '@iazlabs/functional';
-import { shallowEqual } from '@iazlabs/utilities';
+import { memoize, MemoizerOptions } from '@azlabsjs/functional';
+import { shallowEqual } from '@azlabsjs/utilities';
 import {
   CreateSelectorOptions,
   LeastType,
