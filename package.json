@@ -56,7 +56,7 @@
     ],
     "devDependencies": {
         "rxjs": "^6.6.7 || ^7.0",
-        "@azlabsjs/ts-build": "^0.1.16",
+        "@azlabsjs/ts-build": "^0.4.21",
         "size-limit": "^11.1.4",
         "@size-limit/preset-small-lib": "^11.1.4",
         "@types/jest": "^27.4.1",
