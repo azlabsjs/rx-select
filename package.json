@@ -1,7 +1,11 @@
 {
     "version": "0.2.0",
     "license": "MIT",
+    "name": "@azlabsjs/rx-select",
+    "author": "azandrew-sidoine",
     "main": "dist/index.js",
+    "module": "dist/esm/index.mjs",
+    "types": "dist/types/index.d.ts",
     "typings": "dist/types/index.d.ts",
     "files": [
         "dist/**/*"
@@ -14,7 +18,6 @@
         "lint": "ts-build lint",
         "prepare": "git config core.hookspath .githooks && ts-build build",
         "size": "size-limit",
-        "analyze": "size-limit --why",
         "test": "jest",
         "prettier": "prettier --write src/**/*"
     },
@@ -31,14 +34,16 @@
     },
     "exports": {
         ".": {
-            "import": "./dist/esm/index.mjs",
-            "require": "./dist/cjs/index.cjs",
-            "default": "./dist/cjs/index.cjs"
+            "import": {
+                "types": "./dist/types/index.d.mts",
+                "default": "./dist/esm/index.mjs"
+            },
+            "require": {
+                "types": "./dist/types/index.d.ts",
+                "default": "./dist/cjs/index.cjs"
+            }
         }
     },
-    "name": "@azlabsjs/rx-select",
-    "author": "azandrew-sidoine",
-    "module": "dist/esm/index.mjs",
     "size-limit": [
         {
             "path": "dist/cjs/index.cjs",
@@ -52,7 +57,8 @@
     "devDependencies": {
         "rxjs": "^6.6.7 || ^7.0",
         "@azlabsjs/ts-build": "^0.1.16",
-        "@size-limit/preset-small-lib": "^7.0.8",
+        "size-limit": "^11.1.4",
+        "@size-limit/preset-small-lib": "^11.1.4",
         "@types/jest": "^27.4.1",
         "@typescript-eslint/eslint-plugin": "^5.17.0",
         "@typescript-eslint/parser": "^5.17.0",
@@ -60,14 +66,13 @@
         "jest": "^27.5.1",
         "jest-watch-typeahead": "^1.0.0",
         "prettier": "^2.6.1",
-        "size-limit": "^7.0.8",
         "ts-jest": "^27.1.4",
         "tslib": "^2.3.1",
         "typescript": "^4.6.3"
     },
     "dependencies": {
         "@azlabsjs/functional": "^0.2.0",
-        "@azlabsjs/utilities": "^0.1.8"
+        "@azlabsjs/utilities": "^0.2.0"
     },
     "peerDependencies": {
         "rxjs": "^6.6.7 || ^7.0"
