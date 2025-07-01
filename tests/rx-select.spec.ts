@@ -4,6 +4,10 @@ import { createSelector } from '../src';
 import { rxSelect } from '../src/select';
 import { JsFunction } from '../src/types';
 
+/** @internal */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type UnknownType = any;
+
 describe('rx-Select test', () => {
   it('should evaluate to true', async () => {
     const state$ = of({
@@ -19,8 +23,8 @@ describe('rx-Select test', () => {
     const observable$ = state$.pipe(
       rxSelect(
         createSelector(
-          (state: any) => state.shop.items,
-          (items: any[]) =>
+          (state: UnknownType) => state.shop.items,
+          (items: UnknownType[]) =>
             items.reduce((subtotal, item) => subtotal + item.value, 0)
         ) as JsFunction<number>,
         (state) => state.shop.taxPercent,
@@ -45,14 +49,14 @@ describe('rx-Select test', () => {
         ],
       },
     });
-    const computation1 = (state: any) =>
+    const computation1 = (state: UnknownType) =>
       state.shop.items.reduce(
-        (subtotal: number, item: any) => subtotal + item.value,
+        (subtotal: number, item: UnknownType) => subtotal + item.value,
         0
       );
 
     // Heavy computational task
-    const computatation2 = (state: any) => {
+    const computatation2 = (state: UnknownType) => {
       totalCalls++;
       return state.shop.taxPercent;
     };
@@ -76,6 +80,7 @@ describe('rx-Select test', () => {
     observable$.subscribe();
     observable$.subscribe();
     observable$.subscribe();
+
     // Simulate a wait for the test to complete
     await lastValueFrom(
       interval(2000).pipe(

@@ -1,6 +1,11 @@
+/** @internal */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type UnknownType = any;
+
 // createSelector types
 // @internal
 export type LeastType<T> = T extends [unknown, ...infer U] ? U[0] : never;
+
 // @internal
 export type CreateSelectorOptions<T> = {
   memoize?: T;
@@ -12,11 +17,11 @@ export type CreateSelectorOptions<T> = {
  */
 export type SelectorType<
   // The state can be anything
-  State = any,
+  State = UnknownType,
   // The result will be inferred
   Result = unknown,
   // There are either 0 params, or N params
-  Params extends never | readonly any[] = any[]
+  Params extends never | readonly UnknownType[] = UnknownType[],
   // If there are 0 params, type the function as just State in, Result out.
   // Otherwise, type it as State + Params in, Result out.
 > = [Params] extends [never]
@@ -25,4 +30,4 @@ export type SelectorType<
 // !Ends createSelector types
 // !Ends Types
 
-export type JsFunction<T = unknown> = (...args: any[]) => T | (() => T);
+export type JsFunction<T = unknown> = (...args: UnknownType[]) => T | (() => T);

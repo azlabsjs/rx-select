@@ -6,6 +6,7 @@ import {
   CreateSelectorOptions,
   LeastType,
   SelectorType,
+  UnknownType,
 } from './types';
 
 // Helpers
@@ -29,9 +30,9 @@ const getSelectorFuncs = (funcs: unknown[]) => {
 export function createSelectorFnCreator<
   SelectorFn extends (...arg: unknown[]) => unknown,
   MemoizeFn extends (func: SelectorFn, options?: MemoizerOptions) => SelectorFn,
-  SelectorMemoizeOption extends LeastType<Parameters<MemoizeFn>>
+  SelectorMemoizeOption extends LeastType<Parameters<MemoizeFn>>,
 >(memoizeFn: MemoizeFn, options?: LeastType<Parameters<MemoizeFn>>) {
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   return (...selectors: Function[]) => {
     let lastResult!: unknown;
     let options_: CreateSelectorOptions<SelectorMemoizeOption> = {
@@ -40,7 +41,7 @@ export function createSelectorFnCreator<
     let lastArgument = selectors.pop();
     const lastArgumentType = typeof lastArgument;
     if (lastArgumentType === 'object') {
-      options_ = lastArgument as any;
+      options_ = lastArgument as UnknownType;
       lastArgument = selectors.pop();
     }
     if (lastArgumentType !== 'function') {
@@ -58,7 +59,7 @@ export function createSelectorFnCreator<
     const outputFunc = memoizeFn(
       function () {
         // eslint-disable-next-line prefer-spread
-        return (lastArgument as any).apply(
+        return (lastArgument as UnknownType).apply(
           null,
           // eslint-disable-next-line prefer-rest-params
           arguments
@@ -77,7 +78,7 @@ export function createSelectorFnCreator<
               null,
               // Use arguments instead of spread for perfomance reason
               // eslint-disable-next-line prefer-rest-params
-              arguments as any
+              arguments as UnknownType
             )
           );
         }
@@ -147,6 +148,6 @@ export function createSelectorFnCreator<
  *  )
  * @returns
  */
- export const createSelector = createSelectorFnCreator(memoize, {
+export const createSelector = createSelectorFnCreator(memoize, {
   equality: { func: shallowEqual },
 });

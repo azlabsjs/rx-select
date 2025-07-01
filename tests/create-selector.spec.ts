@@ -1,5 +1,9 @@
 import { createSelector } from '../src';
 
+/** @internal */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type UnknownType = any;
+
 describe('createSelector tests', () => {
   it('should run successfully', () => {
     const exampleState = {
@@ -14,7 +18,7 @@ describe('createSelector tests', () => {
     const selectShopItems = (state: typeof exampleState) => state.shop.items;
     const selectTaxPercent = (state: typeof exampleState) =>
       state.shop.taxPercent;
-    const selectSubtotal = createSelector(selectShopItems, (items: any[]) =>
+    const selectSubtotal = createSelector(selectShopItems, (items: UnknownType[]) =>
       items.reduce((subtotal, item) => subtotal + item.value, 0)
     );
     const selectTax = createSelector(

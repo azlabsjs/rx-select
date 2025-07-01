@@ -2,8 +2,8 @@ import { map, Observable, OperatorFunction } from 'rxjs';
 import { createSelector } from './create-selector';
 import { JsFunction } from './types';
 
-// Type defintiions for rxSelectors to add type check for typescript project
-// up to 9 selector arguments
+// Type defintiions for rxSelectors to add type check 
+// for typescript project up to 9 selector arguments
 // @internal
 export function rxSelect<T, T1, R>(
   func1: JsFunction<T1>,
